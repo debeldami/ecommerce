@@ -1,0 +1,26 @@
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "description": "test project on for mern stack e-commerce app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/debeldami/ecommerce.git"
+  },
+  "author": "Debel Damilola",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/debeldami/ecommerce/issues"
+  },
+  "homepage": "https://github.com/debeldami/ecommerce#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.7",
+    "morgan": "^1.10.0"
+  }
+}
