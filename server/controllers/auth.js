@@ -52,6 +52,23 @@ exports.signin = asyncHandler(async (req, res, next) => {
   sendTokenResponse(user, 200, res);
 });
 
+/**
+ * @desc      Sign out
+ * @route     POST /api/signout
+ * @access    Public
+ */
+exports.signout = asyncHandler((req, res) => {
+  res
+    .cookie('token', undefined, {
+      expires: new Date(Date.now() + 1 * 1000),
+      httpOnly: true,
+    })
+    .json({
+      success: true,
+      data: {},
+    });
+});
+
 //get token, create cookies and send response
 const sendTokenResponse = (user, stausCode, res) => {
   const { name, _id, role } = user;

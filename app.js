@@ -13,7 +13,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 //route import
-const userRoutes = require('./server/routes/user');
+const authRoute = require('./server/routes/auth');
+const userRoute = require('./server/routes/userProfile');
 
 //middleware should be require only during development face
 if (process.env.NODE_ENV === 'development') {
@@ -26,7 +27,9 @@ if (process.env.NODE_ENV === 'development') {
 //database connection
 connectDB();
 
-app.use('/', userRoutes);
+app.use('/api', authRoute);
+app.use('/api/user', userRoute);
+
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 8000;
