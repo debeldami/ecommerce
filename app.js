@@ -1,7 +1,16 @@
 const express = require('express');
-const app = express();
+const cookieParser = require('cookie-parser');
+
 require('dotenv').config();
+const app = express();
 const connectDB = require('./server/database/db');
+const errorHandler = require('./server/middlewares/errorHandler');
+
+//for request body
+app.use(express.json());
+
+//cookie parser
+app.use(cookieParser());
 
 //route import
 const userRoutes = require('./server/routes/user');
@@ -18,8 +27,10 @@ if (process.env.NODE_ENV === 'development') {
 connectDB();
 
 app.use('/', userRoutes);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 8000;
+
 const server = app.listen(PORT, () => {
   if (process.env.NODE_ENV === 'development')
     console.log(
