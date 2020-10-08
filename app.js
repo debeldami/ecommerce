@@ -1,5 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const fileupload = require('express-fileupload');
 
 require('dotenv').config();
 const app = express();
@@ -12,10 +13,14 @@ app.use(express.json());
 //cookie parser
 app.use(cookieParser());
 
+//file uploader
+app.use(fileupload());
+
 //route import
 const authRoute = require('./server/routes/auth');
 const userRoute = require('./server/routes/userProfile');
 const categoryRoute = require('./server/routes/category');
+const productRoute = require('./server/routes/product');
 
 //middleware should be require only during development face
 if (process.env.NODE_ENV === 'development') {
@@ -31,6 +36,7 @@ connectDB();
 app.use('/api/auth', authRoute);
 app.use('/api/user', userRoute);
 app.use('/api/category', categoryRoute);
+app.use('/api/product', productRoute);
 
 app.use(errorHandler);
 

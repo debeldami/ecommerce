@@ -57,7 +57,7 @@ exports.signin = asyncHandler(async (req, res, next) => {
  * @route     POST /api/signout
  * @access    Public
  */
-exports.signout = asyncHandler((req, res) => {
+exports.signout = asyncHandler((req, res, next) => {
   res
     .cookie('token', undefined, {
       expires: new Date(Date.now() + 1 * 1000),
