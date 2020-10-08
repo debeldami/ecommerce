@@ -4,20 +4,17 @@ const ErrorResponse = require('../utils/errorResponse');
 
 /**
  * @desc      get use profile
- * @route     get /api/secret/:userId
+ * @route     get /api/user/
  * @access    Private
  */
 exports.userProfile = asyncHandler(async (req, res) => {
-  const userId = req.params.userId;
+  const userId = req.user;
 
-  console.log(userId);
   const user = await User.findById(userId);
 
   if (!user) {
     return next(new ErrorResponse('user does not exist', 400));
   }
-
-  console.log(user);
 
   res.status(200).json({
     success: true,

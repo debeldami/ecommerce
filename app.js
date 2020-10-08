@@ -15,6 +15,7 @@ app.use(cookieParser());
 //route import
 const authRoute = require('./server/routes/auth');
 const userRoute = require('./server/routes/userProfile');
+const categoryRoute = require('./server/routes/category');
 
 //middleware should be require only during development face
 if (process.env.NODE_ENV === 'development') {
@@ -27,8 +28,9 @@ if (process.env.NODE_ENV === 'development') {
 //database connection
 connectDB();
 
-app.use('/api', authRoute);
+app.use('/api/auth', authRoute);
 app.use('/api/user', userRoute);
+app.use('/api/category', categoryRoute);
 
 app.use(errorHandler);
 
